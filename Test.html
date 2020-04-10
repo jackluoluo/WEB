@@ -1,0 +1,603 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>下拉菜单实例|菜鸟教程(runoob.com)</title> 
+    <meta charset="utf-8">
+
+    <style>
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border:none;
+            cursor: pointer; 
+            display:block;
+        }
+
+        .dropdown {
+           height:190px;
+           width:120px;
+           display:block;
+           margin:4px;
+           padding:4px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        } 
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+        .tooltip {
+        position:relative;
+        display:inline-block;
+        border-bottom:4px double yellow;/* 设置文本块的显示格式*/
+        }
+            .tooltip .tooltiptext {
+            visibility:hidden;
+            width:140px;
+            background-color:rgba(0,0,0,0.2);
+            color:black;
+            text-align:center;
+            border-radius:8px;
+            padding:6px;
+            position:absolute;
+            z-index:1; 
+            }
+            .tooltip:hover .tooltiptext {
+            visibility:visible;
+            }
+        /*div img {
+        width:300px;
+        height:200px;/*后代选择器 用空格隔开 
+        }*/
+        div.img {
+        border:4px solid #4CAF50;
+        opacity:0.1;
+        filter:alpha(opacity=10);
+        }
+            div.img:hover {
+            border:4px solid #ff0000;
+            opacity:1.0;
+            filter:alpha(opacity=100);
+            }
+            div.img img {
+            width:100%;
+            height:auto;
+            }
+        * {
+        box-sizing:border-box;
+        }
+        .responsive {
+            padding: 0 8px;
+            float: left;
+            width: 24.99999%
+        }
+        @media only screen and (max-width: 1200px) {
+            .responsive {
+            width:29.9999%;
+            margin:6px 0;
+            }
+        }
+        @media only screen and (max-width:80 px) {
+            .responsive {
+            width:100%;
+            }
+        }
+        .clearfix:after {
+        content:"";
+        display:table;
+        clear:both;
+        }
+        [class =input] {
+        color:#ff0000;
+        }
+        input[type=text] {
+        width:100%;
+        padding:6px 6px;
+        margin:10px 0;
+        display:inline-block;
+        border:2px solid #4CAF50;
+        border-radius:4px;
+        box-sizing:border-box;
+        }
+        input[type=submit] {
+        width:100%;
+        background-color: #4CAF50;
+        color:white;
+        padding:14px 20px;
+        margin:8px 0;
+        border:none;
+        border-radius:4px;
+         }
+        input[type=submit] :hover{
+        background-color:#ff6a00;
+        }
+        .form {
+        border-radius:8px;
+        background-color:#f2f2f2;
+        padding:30px;
+        }
+        input[type=search] {
+            width: 20%;
+            border: 4px solid black;
+            background-image: url('https://static.runoob.com/images/mix/searchicon.png');
+            background-position:10px 10px;
+            background-repeat:no-repeat;
+            padding:12px 20px 12px 40px;
+            box-sizing:border-box;
+            border-radius:8px;
+        }
+        input[type=search]:focus {
+        width:100%;
+        }
+        select {
+        width:100%;
+        border-radius:8px;
+        height:40px;
+       background-color:#f1f1f1;/*此处的颜色是指字体颜色*/
+        }
+        input[type=button], input[type=reset] {
+            background-color: aquamarine;
+            color: white;
+            border-radius: 4px;
+            margin: 40px 4px;
+            width: 80px;
+            background-image: repeating-linear-gradient(#4CAF50,#aquamarine 10%,#ff0000 20%) /*此种情况是上下渐变*/
+            /*background-image:linear-gradient(to right ,#4CAF50,#ff0000) 从左到右的渐变*/
+        }
+        @font-face {
+        font-family:myFirstFont;
+        src:url(sansation_light.woff); 
+        }
+        @font-face {
+            font-family: myFirstFont;
+            src: url(sansation_light.woff);
+            font-weight:bold;
+        }
+        .font {
+        font-family:myFirstFont;
+        }
+
+        .Translate1 {
+        width:100px;
+        height:100px;
+        background-color:brown;
+        border:4px solid black;
+        
+        }
+        .Translate2 {
+            width: 100px;
+            height: 100px;
+            background-color: brown;
+            border: 4px solid black;
+            transform: rotate(120deg); /*旋转*/
+            /* transform: translate(40px,100px) /*移动  */ 
+            transform: scale(0.5,0.5);/*增加/减小元素 分别是长 宽*/
+            transform:skew(30deg,30deg);/*倾斜*/
+        }
+        .Translate3 {
+            width: 100px;
+            height: 100px;
+            background-color: brown;
+            border: 4px solid black;
+            -webkit-transform: rotateY(130deg);
+            transform: rotateX(30deg);
+            transform: rotateZ(30deg);
+        }
+        .Translate4 {
+        width:200px;
+        height:200px;
+        background-color:chartreuse;
+
+        }
+        .Translate1:hover {
+        background-color:#4CAF50;
+        width:100%; 
+        transition:width 4s;/*定义过渡时间*/
+        }
+        .Translate2 :hover{
+            width:200px;
+            height:200px;
+            transform:rotate(222deg);
+            transition:width 2s,height 2s,transform 2s;
+        }
+        .Translate4:hover {
+        width:400px;
+        height:400px;
+        background-color:aliceblue;
+        transform:rotate(222deg);
+        transition:width 4s,height 4s,transform 4s ;/*定义每一个位置旋转需要的时间，多项转换*/ 
+        }
+        .animation {
+        width:100px;
+        height:100px;
+        background:red;
+        animation:myFirst 8s;/*定义要做的动画效果*/
+        }
+        @keyframes myFirst { /*具体定义动画过程*/
+            from { /*从这里开始过渡*/
+                width: 200px;
+                height: 200px;
+                background: black;
+            }
+
+            to { /*最终态*/
+                width: 20px;
+                height: 20px;
+                background: yellow;
+            }
+        }
+        div.animation1 {
+            width: 100px;
+            height: 100px;
+            background: #ff0000;
+            position: relative;
+            /*animation:mySecond 10s;定义要执行的动画以及完成动画所需的时间*/
+            /*animation-name: mySecond;
+            animation-duration: 10s;
+            animation-timing-function: linear;
+            animation-play-state:running;
+            animation-delay:2s;
+            animation-direction:alternate;
+            animation-iteration-count:infinite;/*定义动画次数*/ 
+            animation:mySecond 4s linear 2s 1 alternate;/*上面注释的等于这一行*/
+        }
+        @keyframes mySecond {
+            0% {
+                width: 100px;
+                height: 100px;
+                background: #ff0000;
+                left:0px;/*改变元素的位置*/
+                top:0px;
+            }
+            25% {
+                width: 1000px;
+                height: 1000px;
+                background: #4CAF50;
+                left:400px;
+                top:0px;
+            }
+            50% {
+                width: 500px;
+                height: 500px;
+                background: yellow;
+                left:400px;
+                top:400px;
+            }
+            100% {
+                width: 100px;
+                height: 100px;
+                background: #0026ff;
+                left:0px;
+                top:400px;
+            }
+        }
+        .news {
+        column-count:3;/*如果文字够长则将文字改变为三列显示*/
+        -webkit-column-gap:80px;/*column 之间的间隙 现在好像不起作用*/
+        column-rule-style:outset;/*边框*/
+        column-rule-width:4px;
+        column-rule-color:#ff0000;
+        column-width:80px;
+        }
+        h2 {
+        column-span:all;
+        }
+
+        img {
+        border-radius:8px;
+        max-width:60%;
+        max-height:40%;
+        padding:8px;
+        border:2px solid #ff0000;
+        }
+
+           a :hover {
+            box-shadow:0 0 2px 1px yellow;
+            background-color:#4CAF50;
+            }
+
+        .button1 {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 4px;
+            color: black;
+            cursor: not-allowed;/*鼠标🈲用*/
+        }
+            .button1:hover {
+                background-color: green;
+                color:white;
+                box-shadow:#ff6a00; 
+            }
+        .button2 {
+            width: 40px;
+            height: 40px;
+            background-color:yellow;
+            border-radius: 4px;
+        }
+            .button2:hover {
+            background-color:blue;
+            color:white;
+            opacity:0.4;
+            }
+        body {
+        background-color:pink;
+        }
+        @media screen and (min-width: 980px) {/*如果媒体类型的可视窗口小于980px，则背景颜色改变*/
+            body {
+            background-color:yellow;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="dropdown">
+        <span class="dropbtn"> 下拉菜单 </span>
+        <div class="dropdown-content">
+            <a href="//www.runoob.com">菜鸟教程 1</a>
+            <a href="//www.runoob.com">菜鸟教程 2</a>
+            <a href="//www.runoob.com">菜鸟教程 3</a>
+        </div>
+
+    </div>
+
+    <div class="input">
+        <span class="tooltip">
+            文件输入
+            <span class="tooltiptext">
+                YOU ARE A MAN PLEASE REMIND IT.
+            </span>
+        </span>
+
+    </div>
+
+    <div class="responsive">
+        <div class="img">
+            <a target="_blank" href="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg">
+                <img src="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg" alt="Photo" width="200" height="300" />
+            </a>
+            <div class="desc">
+                Add a description of the image here.
+
+            </div>
+        </div>
+    </div>
+
+    <div class="responsive">
+        <div class="img">
+            <a target="_blank" href="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg">
+                <img src="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg" alt="Photo" />
+            </a>
+            <div class="desc">
+                Add a description of the image here.
+
+            </div>
+        </div>
+    </div>
+
+    <div class="responsive">
+        <div class="img">
+            <a target="_blank" href="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg">
+                <img src="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg" alt="Photo" />
+            </a>
+            <div class="desc">
+                Add a description of the image here.
+
+            </div>
+        </div>
+    </div>
+    <div class="responsive">
+        <div class="img">
+            <a target="_blank" href="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg">
+                <img src="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg" alt="Photo" width="200" height="300" />
+            </a>
+            <div class="desc">
+                Add a description of the image here.
+
+            </div>
+        </div>
+    </div>
+    <div class="responsive">
+        <div class="img">
+            <a target="_blank" href="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg">
+                <img src="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg" alt="Photo" width="200" height="300" />
+            </a>
+            <div class="desc">
+                Add a description of the image here.
+
+            </div>
+        </div>
+    </div>
+    <div class="responsive">
+        <div class="img">
+            <a target="_blank" href="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg">
+                <img src="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg" alt="Photo" width="200" height="300" />
+            </a>
+            <div class="desc">
+                Add a description of the image here.
+
+            </div>
+        </div>
+    </div>
+    <div class="responsive">
+        <div class="img">
+            <a target="_blank" href="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg">
+                <img src="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg" alt="Photo" width="200" height="300" />
+            </a>
+            <div class="desc">
+                Add a description of the image here.
+
+            </div>
+        </div>
+    </div> <div class="responsive">
+        <div class="img">
+            <a target="_blank" href="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg">
+                <img src="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg" alt="Photo" width="200" height="300" />
+            </a>
+            <div class="desc">
+                Add a description of the image here.
+
+            </div>
+        </div>
+    </div>
+    <div class="responsive">
+        <div class="img">
+            <a target="_blank" href="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg">
+                <img src="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg" alt="Photo" width="200" height="300" />
+            </a>
+            <div class="desc">
+                Add a description of the image here.
+
+            </div>
+        </div>
+    </div>
+    <div class="responsive">
+        <div class="img">
+            <a target="_blank" href="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg">
+                <img src="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg" alt="Photo" width="200" height="300" />
+            </a>
+            <div class="desc">
+                Add a description of the image here.
+
+            </div>
+        </div>
+    </div>
+    <div class="responsive">
+        <div class="img">
+            <a target="_blank" href="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg">
+                <img src="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg" alt="Photo" width="200" height="300" />
+            </a>
+            <div class="desc">
+                Add a description of the image here.
+
+            </div>
+        </div>
+    </div>
+    <div class="responsive">
+        <div class="img">
+            <a target="_blank" href="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg">
+                <img src="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg" alt="Photo" width="200" height="300" />
+            </a>
+            <div class="desc">
+                Add a description of the image here.
+
+            </div>
+        </div>
+    </div>
+    <div class="responsive">
+        <div class="img">
+            <a target="_blank" href="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg">
+                <img src="https://www.runoob.com/wp-content/uploads/2016/04/img_fjords.jpg" alt="Photo" width="200" height="300" />
+            </a>
+            <div class="desc">
+                Add a description of the image here.
+
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div style="padding: 6px; "></div>
+    <div class="form">
+        <form>
+            <label for="fname">First name</label>
+            <input type="text" id="fname" name="firstname" />
+            <label for="fname">Last name</label>
+            <input type="text" id="lname" name="firstname" />
+            <label for="country">Country</label>
+            <select id="country" name="country">
+                <option value="China">China</option>
+                <option value="USA">USA</option>
+                <option value="Italy">Italy</option>
+                <option value="Spanish">Spanish</option>
+            </select>
+            <input type="submit" value="Submit" />
+            <input type="search" placeholder="Searching..." />
+        </form>
+        <input type="reset" value="Reset" /> 
+        <input type="button" value="Out" /> 
+    </div>
+
+    <div class="font">
+        this is my first font size.
+    </div>
+ 
+    <div>
+
+
+        <div class="Translate1">
+            YOUR A MAN.
+        </div>
+
+        <div class="Translate2">
+            YOUR A MAN THAT TWENTY FIVE OLD.
+        </div>
+
+        <div class="Translate3">
+            YOUR A YOUNG MAN .
+        </div>
+
+        <div class="Translate4">
+            Budy you a yong man big man.
+        </div>
+
+        <div class="animation">
+
+        </div>
+
+        <div class="animation1">
+
+        </div>
+
+        <div class="news">
+            <h2>英国维斯米斯特教堂碑文 </h2>
+            当我年轻的时候，我梦想改变这个世界；当我成熟以后，我发现我不能够改变这个世界，我将目光缩短了些，决定只改变我的国家；当我进入暮年以后，我发现我不能够改变我们的国家，我的最后愿望仅仅是改变一下我的家庭，但是，这也不可能。当我现在躺在床上，行将就木时，我突然意识到：如果一开始我仅仅去改变我自己，然后，我可能改变我的家庭；在家人的帮助和鼓励下，我可能为国家做一些事情；然后，谁知道呢?我甚至可能改变这个世界。”
+
+        </div>
+    </div>
+
+    <div>
+        <a target="_self" href="https://wx2.sinaimg.cn/large/59853be1ly1gd8ecs2qipj20f408ith5.jpg"> 
+            <img src="https://wx2.sinaimg.cn/large/59853be1ly1gd8ecs2qipj20f408ith5.jpg" />
+        </a>
+    </div>
+
+    <div>
+        <input type="button" value="Green" class="button1" />
+        <input type="button" value="Blue" class="button2"/>
+        <input  type="checkbox"value="Check"/>
+    </div>
+
+    <div>
+        <span class="1"></span>
+    <script>
+
+        document.getElementsByClassName(1).innerHTML = "Hello ";
+    </script>   
+    </div>
+    
+ </body>
+</html>

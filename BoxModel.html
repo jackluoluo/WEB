@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="CSS/StyleSheet1.css" />
+    <title></title>
+    <style type="text/css">
+        div {
+        background-color:lightblue; 
+        border:25px solid green;
+        padding:25px;
+        margin:25px;
+        }
+
+        .table01 {
+            height: 400px;
+            width: 600px;
+            background-color: #ffd800;
+        }
+
+        .table02 {
+            height: 400px;
+            width: 600px;
+            background-color: #b6ff00;
+        }
+
+        input {
+            width: 300px;
+        }
+       
+        /*
+
+    table tr:nth-child(odd){background:#C00;}
+    table td:nth-child(even){color:#f00;}  隔行变色问题 
+    table tr:nth-child(5){background:#73B1E0;color:#FFF;} 
+        */
+   
+    </style>
+   
+</head>
+<body>
+    <div>
+
+
+        <p>
+            This is box model 所有HTML元素可以看作盒子，在CSS中，"box model"这一术语是用来设计和布局时使用。
+            CSS盒模型本质上是一个盒子，封装周围的HTML元素，它包括：边距，边框，填充，和实际内容。
+            盒模型允许我们在其它元素和周围元素边框之间的空间放置元素。.
+        </p>
+
+        <table class="table01" border="1">
+            <tr>
+                <th>Question</th>
+                <th>Reply</th>
+            </tr>
+            <tr>
+                <td>自我介绍</td>
+                <td><input /></td>
+            </tr>
+            <tr>
+                <td>兴趣爱好</td>
+                <td><input /></td>
+            </tr>
+            <tr>
+                <td>顾客很生气怎么解决</td>
+                <td><input /></td>
+            </tr>
+            <tr>
+                <td>解决压力方法</td>
+                <td><input /></td>
+            </tr>
+            <tr>
+                <td>加入这份工作你认为的优势</td>
+                <td><input /></td>
+            </tr>
+            <tr>
+                <td>喜欢什么运动 </td>
+                <td><input /></td>
+            </tr>
+            <tr>
+                <td>为什么要离职</td>
+                <td><input /></td>
+            </tr>
+            <tr>
+                <td>有什么问题要问我</td>
+                <td><input /></td>
+            </tr>
+        </table>
+
+
+        <table class="table02" border="1">
+
+            <tr>
+                <th>Question</th>
+                <th>Reply</th>
+            </tr>
+
+            <tr>
+                <td>
+                    <ol>
+                        <li>自我介绍</li>
+                        <li>兴趣爱好</li>
+                        <li>顾客很生气怎么解决</li>
+                        <li>解决压力方法</li>
+                        <li>加入这份工作你认为的优势</li>
+                        <li>喜欢什么运动</li>
+                        <li>为什么要离职</li>
+                        <li>有什么问题要问我</li>
+                    </ol>
+                </td>
+
+                <td>
+                    <ul>
+                        <li><input /></li>
+                        <li><input /></li>
+                        <li><input /></li>
+                        <li><input /></li>
+                        <li><input /></li>
+                        <li><input /></li>
+                        <li><input /></li>
+                        <li><input /></li>
+                    </ul>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+</body>
+</html>

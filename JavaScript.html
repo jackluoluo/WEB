@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="https://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+        <title>JavaScript2020-03-30</title>
+            <script>
+                $(document).ready(function () {//所有的jQuery函数都放在这个函数里面
+                    $("button").click(function () {
+                        $("p").hide();
+                    });
+            });
+    </script>i
+</head>
+<body onload="checkCookies()">
+    <div>
+         <a href="/HTML/jQuery.html">jQuery</a>
+        <button>Click me</button>
+        <p id="1"></p>
+        <hr />
+        <p id="2"></p>
+        <hr />
+        <p id="3"></p>
+        <hr />
+        <p id="4"></p>
+        <hr />
+        <hr />
+        <input type="text" id="input" placeholder="please input your phone number" />
+        <hr />
+        <input type="button" value="Submit" onclick="myFunction()" />
+        <p onclick="this.innerHTML='CHANGE'">?????</p>
+        <input id="mybtn" type="button" value="click me" />
+        <p id="5"></p>
+        <input id="fname" type="text" onchange="Onchange()" />
+        <div style="background-color:#ff6a00;width:100px;height:100px;padding:40px" onmouseover="mOver(this)" onmouseout="mOut(this)">I am Here</div>
+        <p onmouseover="style.color='red'" onmouseout="style.color='pink'">Click me time !!!!</p>
+        <input type="button" onclick="goBack()" value="GoBack" />
+        <div id="text"></div>
+        <p id="time"></p>
+        <input type="button" onclick="timeFunction1()" value="Time" />
+        <input type="button" onclick="stop()" value="Stop" /> 
+         
+        <script>
+            document.getElementById(1).innerHTML = "YOU ARE A MAN.";
+            /* document.getElementsByClassName("active").innerHTML = "YOU ARE A MAN";*/
+            var i;
+            var cars = new Array();
+            cars[0] = "glc";
+            cars[1] = "xt6";
+            cars[2] = "g";
+            for (i = 0; i < cars.length; i++) {
+                document.write("<hr/>" + cars[i] + "<br>");
+            }
+            var person = {
+                firstname: "bill",
+                lastname: "gates",
+                age: 25
+            };
+            document.getElementById(2).innerHTML = person.age;
+            function myFunction() {
+
+                var number, x;
+                number = document.getElementById("input");
+                if (isNaN(number) || number.length != 11) {
+                    x = "please input right phone number";
+                    alert("YOU ARE A LOSER?");
+                } else {
+                    x = "go ahead";
+                }
+                document.getElementById(3).innerHTML = x;
+
+                function myFunction1(a, b, c) {
+
+                    return a + b + c;
+                }
+                document.getElementById(4).innerHTML = myFunction1(1, 2, 1111);
+            }
+            document.getElementById("mybtn").onclick = function () { displayDate() };
+            function displayDate() {
+                document.getElementById(5).innerHTML = Date();
+            }
+            function checkCookies() {
+                if (navigator.cookieEnabled == true) {
+                    alert("Cookies can be use.");
+                }
+                else {
+                    alert("Cookies not be used.");
+                }
+            }
+
+            function Onchange() {
+                var x = document.getElementById("fname");
+                x.value = x.value.toUpperCase();
+
+            }
+            function mOver(obj) {
+                obj.innerHTML = "I am there.";
+            }
+            function mOut(obj) {
+                obj.innerHTML = "I am not there.";
+            }
+            function newDoc() {
+                window.location.assign("http://www.baidu.com");
+            }
+            function goBack() {
+                setInterval(function () { alert("YOU ARE A MAN"), 1000 });;
+            }
+            txt = navigator.appCodeName + "</p>";
+            txt += navigator.appName;
+            document.getElementById("text").innerHTML = txt;
+            var myTime = setInterval(function () { timeFunction() }, 1000);
+            function timeFunction() {
+                var time = new Date();
+                var nowtime = time.toLocaleTimeString();
+                document.getElementById("time").innerHTML = nowtime;
+            }
+            function timeFunction1() {
+                var myvar = setTimeout(function () { alert("YOU ARE A MAN.") }, 3000);
+            }
+            function stop() {
+                clearTimeout(myvar);
+            }
+            alert(Date());
+
+        </script>
+    </div>
+</body>
+</html>

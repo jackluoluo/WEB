@@ -1,0 +1,367 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div>
+
+    </div>
+    <script>
+        //数组
+        var n = [1, 2, 3, 0];
+        n[0] = 5;//通过索引修改值
+        // var a = number.indexOf(5);//通过值找索引
+        n.slice(0, 3);
+        n.push(1212, 3133, 1211111);//向末尾添加数值
+        n.pop();//最后一个删掉
+        n.unshift("you are a man.");//从头步添加元素
+        n.shift();//把第一个元素删掉
+        n.sort();//数组默认排序
+        n.reverse();//数组反转
+        n.splice(4, 2, "man");//增加位置，删除位置，值
+        //contact 两个数组结合在一起
+        n.join('-');
+        console.log(n);
+        //对象
+        var man = {
+            name: 'jackluo',
+            age: 25,
+            height: 167,
+            language: 'english'
+        };
+        console.log(man.name);
+        //条件判断
+        var height = 1.75;
+        var weight = 80.5;
+        var bmi = weight / (height * height);
+        if (bmi < 18.5) {
+            console.log("overlight");
+        } if (bmi > 18.5 && bmi < 25) {
+            console.log("ok");
+        } if (bmi > 25 && bmi < 28) {
+            console.log("bmi is:" + bmi + "overweight");
+        }
+        //循环
+        var x = 0;
+        var i;
+        for (i = 0; i < 1000; i++) {
+            x = x + i;
+        }
+        console.log(x);
+        var q = 1;//存放值
+        var w = 1;//定义几个值
+        for (w; w < 10; w++) {
+            q = q * w;
+        }
+        console.log(q);
+        //遍历数组
+        var name = ['google', 'baidu', 'huawei', 'apple'];
+        var i, x;
+        for (i = 0; i < name.length; i++) {
+            x = name[i];//
+            //document.write(x);
+            //console.log(x);
+        }
+        for (var i in name) {
+            // console.log(i);
+            //console.log(name[i]);//循环出索引
+        }
+        //map /set
+        var m = new Map([['jack', 95], ['bob', 96], ['jerry', 21], ['william', 20], [1212, 'qq']]);
+        m.set('adm', 98);
+        console.log(m.get('jack'))//得到key 对应的value
+        //方法有get,set,has,delete/分别是获取，增加，判断，删除
+        //set 是一组key的集合 不存储value
+        var s1 = new Set();
+        var s2 = new Set([1, 2, 3]);
+        var s = new Set([1, 1, 2, 3, 3, 4]);//会自动过滤掉重复 的key
+        s.delete(1);
+        console.log(s);
+        //iterable
+        //for of
+        var arr = ['man', 1, 2, 3, 1, 'A'];
+        arr.age = 1212;
+        arr.name = '1221';
+        for (var x of arr) {//只循环集合本身的元素
+            document.write(x);
+        }
+        var i;
+        for (i = 0; i < arr.length; i++) {//最普通的循环
+            console.log(arr[i]);
+        }
+        for (var x in arr) {//for in遍历对象的属性名称，
+            console.log(x);
+        }
+        //for each
+        arr.forEach(function (element, index, array) {//它接收一个函数，每次迭代就自动回调该函数
+            console.log(element + ',   index=' + index);
+        });
+        //函数
+        function abs(x) {
+            if (typeof x != 'number') {
+                throw ('not a number');
+            }
+            if (x >= 0) {
+                return x;
+            } else {
+                return -x;
+            }
+        }
+        console.log(abs(11))
+        //arguments 常用于判断传入参数的个数
+        function foo(a, b, c) {
+            if (arguments.length === 2) {
+                c = b;
+                b = null;
+            }
+        }
+        console.log(foo(11, 2223));
+        //rest 函数
+
+        //变量提升  JavaScript的函数定义有个特点，它会先扫描整个函数体的语句，把所有申明的变量“提升”到函数顶部
+
+        //为了解决块级作用域，ES6引入了新的关键字let，用let替代var可以申明一个块级作用域的变量
+
+        //ES6标准引入了新的关键字const来定义常量，const与let都具有块级作用域
+
+        //ES6中，可以使用解构赋值，直接对多个变量同时赋值
+        var [x, y, z] = ['jack', 'jerry', 'jacky'];
+        var A = [x, y, z];
+        console.log(A);
+        let [X, [Y, Z]] = ['jackk', ['js', 1212]];
+
+        let [, , z1] = [1, 2, 3];
+        let B = [, , z1]
+        console.log(B);
+        function buildDate({ year, month, day, hour = 0, minute = 0, second = 0 }) {
+            return new Date(year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second);
+        }
+        console.log(buildDate({ year: 2017, month: 1, day: 1 }));//使用结构直接把对象的属性绑定到参数
+        //方法  在一个对象中绑定函数，称为这个对象的方法。
+        var xiaoming = {
+            name: '小明',
+            birth: 1995,
+            age: function () {
+                let y = new Date().getFullYear();
+                return y - this.birth;//在一个方法内部，this是一个特殊变量，它始终指向当前对象，也就是xiaoming这个变量。
+            }//这个方法是计算年龄直接返回就行
+        }
+        //如果单独调用函数则this指向全局对象-window
+        //用var that = this;，你就可以放心地在方法内部定义其他函数，而不是把所有语句都堆到一个方法中。
+        console.log(xiaoming.name + "是" + xiaoming.birth + "出生的 今年" + xiaoming.age());
+        //apply
+        //要指定函数的this指向哪个对象，可以用函数本身的apply方法，
+        //它接收两个参数，第一个参数就是需要绑定的this变量，第二个参数是Array，表示函数本身的参数。
+
+
+        function getAge() {
+            var o = new Date().getFullYear();
+            return o - this.birth;
+        }
+        var jack = {
+            name: 'jack luo',
+            birth: 1995,
+            age: getAge
+        };
+        console.log(jack.age() + "and" + getAge.apply(jack, []));
+
+        //call  apply()把参数打包成Array再传入 call()把参数按顺序传入
+        let maxnumber = Math.max.apply(null, [222, 333, 1]);
+        let maxnumbera = Math.max.call(null, 2222, 1212, 211);//对普通函数调用，我们通常把this绑定为null。
+        console.log(maxnumber + "asa" + maxnumbera);
+        //装饰器 利用apply() ，我们还可以动态改变函数的行为。
+        let count = 0;
+        let oldParseInt = parseInt;
+        window.parseInt = function () {
+            count += 1;
+            return oldParseInt.apply(null, arguments);
+        };
+        parseInt(1221);
+        parseInt('112');
+        parseInt('112');
+        parseInt('112');
+        console.log("count=" + count);
+        //高阶函数 JavaScript的函数其实都指向某个变量。既然变量可以指向函数，
+        //函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数
+
+        function add(a, b, c) {
+            return c(a) + c(b);
+        }
+        var gj = add(-6, 1, Math.abs);
+        console.log(gj);
+        //map/reduce
+        function pow(x) {
+            return x * x;
+        }
+        var arr1 = [12, 21, 2, 12212, 331, 121, 9];
+        var results = arr1.map(pow);
+        console.log(results);
+        console.log(arr1.map(String)); //转换位字符串
+        //reduce
+
+
+        //filter
+        var arr2 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        var r = arr2.filter(function (x) {
+            return (x % 2 !== 0);//反回奇数
+        });
+        console.log(r);
+
+        //var arr3 = [1,'', 2, 3, 4, 5, 6, 7, 8, 9,'adfa',''];
+        //var rr = arr3.filter(function (s) {
+        //    return (s && s.trim()); //删除空格
+        //});
+        //console.log(rr);
+
+        //回调函数
+        //filter()接收的回调函数，其实可以有多个参数。通常我们仅使用第一个参数，表示Array的某个元素。回调函数还可以接收另外两个参数，表示元素的位置和数组本身
+        var arr = ['A', 'B', 'C'];
+        var r = arr.filter(function (element, index, self) {
+            console.log(element); // 依次打印'A', 'B', 'C'
+            console.log(index); // 依次打印0, 1, 2
+            console.log(self); // self就是变量arr
+            return true;
+        });
+
+        //sort 排序算法
+
+        var arr = [];
+    </script>
+
+    <script>
+
+        //sort 排序算法
+        //如果认为x < y，则返回-1，如果认为x == y，则返回0，如果认为x > y，则返回1
+        var arr = [1212, 33, 11, 1, 12312, 22, 111];
+        console.log(arr.sort());//ascii码
+        arr.sort(function (x, y) {
+            if (x < y) {
+                return -1;
+            } else {
+                return 0;
+            }
+        });
+        console.log(arr);
+
+        //array
+        //map reduce filter sort array
+        //every  判断数组的所有元素是否满足测试条件
+        var arr = ['Apple', 'pear', 'orange'];
+        console.log(arr.every(function (s) {
+            return s.length < 0;
+        }));
+        console.log(arr.every(function (s) {
+            return s.toUpperCase() == s;
+        }
+        ));
+        //find()方法用于查找符合条件的第一个元素，如果找到了，返回这个元素，否则，返回undefined
+
+        //findIndex()和find()类似，也是查找符合条件的第一个元素，不同之处在于findIndex()会返回这个元素的索引，如果没有找到，返回-1
+
+        //forEach()和map()类似，它也把每个元素依次作用于传入的函数，但不会返回新的数组。forEach()常用于遍历数组，
+        //因此，传入的函数不需要返回值
+        arr.forEach(console.log);
+    </script>
+
+    <!--闭包/箭头函数/generator-->
+    <script>
+        //函数作为返回值 高阶函数除了可以接受函数作为参数外，还可以把函数作为结果值返回。
+
+        function sum(arr) {
+            return arr.reduce(function (x, y) {
+                return x + y;
+            });
+        }
+        var arr = [1, 2, 3, 4, 5];
+        var s = sum([1, 2, 3, 4, 5]);
+        console.log(s);
+        var zero = function () {
+            return function (x) {
+                return x;
+            }
+        };
+        var one = function (f) {
+            return function (x) {
+                return f(x);
+            }
+        };
+        (function (x) {
+            return x * x;
+        })
+        console.log(4);
+
+        //箭头函数
+        x = 3
+        x => x * x;
+        ;
+        function ss(x) {
+            return x * x;
+        }
+        document.write(ss(3));
+    </script>
+
+    <p id="p-id">YOU ARE A MAN.</p>
+    <input type="color" value="yellow" />
+    <input type="file" value="File" />
+    <form id="login-form" method="post" onsubmit="return checkForm()">
+        <input type="text" id="username" name="username">
+        <input type="password" id="password" name="password">
+        <button type="submit">Submit</button>
+    </form>
+    <!--标准对象/Date/RegExp/JSON-->
+    <script>
+        //在JavaScript的世界里，一切都是对象。
+        //
+
+        //var n = new Number(1213);
+        //console.log(n);
+        var now = new Date();//实例化对象
+        console.log(now.getDay() + now.getDate());//
+        var d = now.getMonth();
+        console.log(Date());
+
+        //RegExp
+
+        //number：和JavaScript的number完全一致；
+        //boolean：就是JavaScript的true或false；
+        //string：就是JavaScript的string；
+        //null：就是JavaScript的null；
+        //array：就是JavaScript的Array表示方式——[]；
+        //object：就是JavaScript的{ ... } 表示方式。
+        var p = document.getElementById('p-id');
+        p.style.color = 'black';
+        p.innerHTML = 'UNTIL?';
+        p.innerText = 'litter?';
+        function checkForm() {
+            var pwd = document.getElementById('password');
+            // 把用户输入的明文变为MD5:
+           // pwd.value = toMD5(pwd.value);
+            // 继续下一步:
+            return true;
+        }
+        function log(s) {
+            console.log(s);//封装方法
+        }
+        var
+            canvas = document.getElementById('test-shape-canvas'),
+            ctx = canvas.getContext('2d');
+        log(Math.random() * 10);
+        ctx.clearRect(0, 0, 200, 200); // 擦除(0,0)位置大小为200x200的矩形，擦除的意思是把该区域变为透明
+        ctx.fillStyle = '#dddddd'; // 设置颜色
+        ctx.fillRect(10, 10, 130, 130); // 把(10,10)位置大小为130x130的矩形涂色
+        // 利用Path绘制复杂路径:
+        var path = new Path2D();
+        path.arc(75, 75, 50, 0, Math.PI * 2, true);
+        path.moveTo(110, 75);
+        path.arc(75, 75, 35, 0, Math.PI, false);
+        path.moveTo(65, 65);
+        path.arc(60, 65, 5, 0, Math.PI * 2, true);
+        path.moveTo(95, 65);
+        path.arc(90, 65, 5, 0, Math.PI * 2, true);
+        ctx.strokeStyle = '#0000ff';
+        ctx.stroke(path);
+    </script>
+</body>
+</html>

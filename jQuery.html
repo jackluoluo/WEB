@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+    </script>
+        <script>
+            $(document).ready(function () {
+                $("#p1").click(function () {
+                    $(this).after("INSIST !");
+                    alert("Your mouse is click here.");
+                    $(this).css("background-color", "#cccccc");
+                   
+                });
+            }); 
+    </script>
+</head>
+<body>
+    <p id="p1">You are a man.</p>
+    <p></p>
+</body>
+</html>
